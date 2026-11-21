@@ -1,0 +1,40 @@
+name: waf-modsecurity-lab
+
+services:
+  backend-app:
+    build: ./backend
+    container_name: waf-lab-backend
+    hostname: backend-app
+    networks:
+      waf_internal:
+        ipv4_address: 172.29.0.10
+    restart: unless-stopped
+
+  modsec-proxy:
+    image: owasp/modsecurity-crs:3.3-nginx-alpine
+    container_name: waf-lab-proxy
+    depends_on:
+      - backend-app
+    ports:
+      - "8080:8080"
+    environment:
+      - BACKEND=http://172.29.0.10:5000
+      - PORT=8080
+      - MODSEC_RULE_ENGINE=On
+      - PARANOIA=${PARANOIA_LEVEL:-1}
+      - ANOMALY_INBOUND=5
+      - ANOMALY_OUTBOUND=4
+    volumes:
+      - ./configs/pl${PARANOIA_LEVEL:-1}.conf:/etc/modsecurity.d/owasp-crs/crs-pl-override.conf:ro
+      - ./configs/custom_exclusions.conf:/etc/modsecurity.d/owasp-crs/rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf:ro
+    networks:
+      waf_internal:
+        ipv4_address: 172.29.0.20
+    restart: unless-stopped
+
+networks:
+  waf_internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/24
